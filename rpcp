@@ -1,0 +1,33 @@
+import random
+
+def get_user_choice():
+    choice = input("Сделайте свой выбор (Камень, Ножницы, Бумага): ").strip().lower()
+    while choice not in ['камень', 'ножницы', 'бумага']:
+        print("Некорректный выбор. Пожалуйста, выберите 'Камень', 'Ножницы' или 'Бумага'.")
+        choice = input("Сделайте свой выбор (Камень, Ножницы, Бумага): ").strip().lower()
+    return choice
+
+def get_computer_choice():
+    choices = ['камень', 'ножницы', 'бумага']
+    return random.choice(choices)
+
+def determine_winner(user, computer):
+    if user == computer:
+        return "Ничья! Вы оба выбрали: " + user
+    elif (user == 'камень' and computer == 'ножницы') or \
+         (user == 'ножницы' and computer == 'бумага') or \
+         (user == 'бумага' and computer == 'камень'):
+        return "Вы выиграли! " + user + " бьёт " + computer
+    else:
+        return "Вы проиграли! " + computer + " бьёт " + user
+
+def play_game():
+    print("Добро пожаловать в игру 'Камень, Ножницы, Бумага!'")
+    user_choice = get_user_choice()
+    computer_choice = get_computer_choice()
+    print("Компьютер выбрал:", computer_choice)
+    result = determine_winner(user_choice, computer_choice)
+    print(result)
+
+if __name__ == "__main__":
+    play_game()
